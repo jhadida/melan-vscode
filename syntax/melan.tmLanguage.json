@@ -1,12 +1,15 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "MeLan",
-	"comment": "Using constant.other and keyword.other in places (instead of punctuation.) to target scopes commonly defined by color themes.",
+	"scopeName": "text.mel",
+	"comment": "Using constant.other and keyword.other in places (instead of punctuation.) to target scopes commonly styled by color themes.",
 	"patterns": [
 		{ "include": "#escape.curly" },
 		{ "include": "#document" },
 		{ "include": "#comment" },
 		{ "include": "#variable" },
+		{ "include": "#define" },
+		{ "include": "#builtin" },
 		{ "include": "#command" },
 		{ "include": "#optgroup" },
 		{ "include": "#body.curly" },
@@ -17,6 +20,32 @@
 		"comment": {
 			"name": "comment.line.number-sign.melan",
 			"match": "#.*"
+		},
+		"builtin": {
+			"name": "builtin.melan",
+			"match": "(\\\\)(addpath|pypath|usepkg|define|insert|include)",
+			"captures": {
+				"1": { "name": "keyword.control.function.melan" },
+				"2": { "name": "support.type.builtin.melan" }
+			}
+		},
+		"define": {
+			"disabled": 1,
+			"name": "builtin.define.melan",
+			"begin": "(\\\\)(define)(<\\[)",
+			"end": "(\\]>)",
+			"contentName": "source.json.embedded.melan",
+			"beginCaptures": {
+				"1": { "name": "keyword.control.function.melan" },
+				"2": { "name": "support.type.builtin.melan" },
+				"3": { "name": "keyword.other.body.begin.melan" }
+			},
+			"endCaptures": {
+				"1": { "name": "keyword.other.body.end.melan" }
+			},
+			"patterns": [
+				{ "include": "source.json" }
+			]
 		},
 		"document": {
 			"name": "control.melan",
@@ -45,10 +74,10 @@
 			"match": "(\\\\)(\\w+:)*(\\w+)",
 			"captures": {
 				"1": { "name": "keyword.control.function.melan" },
-				"2": { "name": "entity.name.selector.melan" },
+				"2": { "name": "support.function.prefix.melan" },
 				"3": { "name": "entity.name.function.melan" }
 			},
-			"commend": "Could also assign group 2 to entity.name.tag.melan"
+			"comment": "Could also assign group 2 to entity.name.tag.melan"
 		},
 		"body.curly": {
 			"name": "command.body.melan",
@@ -64,13 +93,15 @@
 				{ "include": "#escape.curly" },
 				{ "include": "#comment" },
 				{ "include": "#variable" },
+				{ "include": "#define" },
+				{ "include": "#builtin" },
 				{ "include": "#command" },
 				{ "include": "#optgroup" },
 				{ "include": "#body.curly" },
 				{ "include": "#body.square" },
 				{ "include": "#body.angle" }
 			],
-			"comment": "TODO: add \\G to the begin pattern when VSCode supports it."
+			"comment": "TODO: add \\G to the begin expression when VSCode supports it."
 		},
 		"body.square": {
 			"name": "command.body.melan",
@@ -85,7 +116,7 @@
 			"patterns": [
 				{ "include": "#escape.square" }
 			],
-			"comment": "TODO: add \\G to the begin pattern when VSCode supports it."
+			"comment": "TODO: add \\G to the begin expression when VSCode supports it."
 		},
 		"body.angle": {
 			"name": "command.body.melan",
@@ -97,7 +128,7 @@
 			"endCaptures": {
 				"1": { "name": "keyword.other.body.end.melan" }
 			},
-			"comment": "TODO: add \\G to the begin pattern when VSCode supports it."
+			"comment": "TODO: add \\G to the begin expression when VSCode supports it."
 		},
         "optgroup": {
 			"name": "optgroup.melan",
@@ -112,7 +143,7 @@
 			"patterns": [
 				{ "include": "#option" }
 			],
-			"comment": "TODO: add \\G to the begin pattern when VSCode supports it."
+			"comment": "TODO: add \\G to the begin expression when VSCode supports it."
 		},
 		"option": {
 			"name": "option.melan",
@@ -179,6 +210,5 @@
 			"name": "constant.character.escape",
 			"match": "\\\\[\\[\\]]"
 		}
-	},
-	"scopeName": "source.mel"
+	}
 }

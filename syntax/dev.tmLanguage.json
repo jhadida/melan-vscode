@@ -27,6 +27,21 @@
 				}
 			}
 		},
+		"define": {
+			"disabled": 1,
+			"name": "builtin.melan",
+			"begin": "(\\\\)(define)(<\\[)",
+			"end": "(\\]>)",
+			"contentName": "source.json.embedded.melan",
+			"beginCaptures": {
+				"1": { "name": "keyword.control.function.melan" },
+				"2": { "name": "support.type.builtin.melan" },
+				"3": { "name": "keyword.other.body.begin.melan" }
+			},
+			"endCaptures": {
+				"1": { "name": "keyword.other.body.end.melan" }
+			}
+		},
 		"command.square.inline": {
 			"name": "command.melan",
 			"match": "(\\\\)(\\w+:)*(\\w+)((?'bo'\\().*(?'eo'\\)))?((?'bb'\\[).*(?'eb'\\]))?",

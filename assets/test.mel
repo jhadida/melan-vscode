@@ -1,19 +1,25 @@
 
-# Comment
-
+# outside document
 Escaped: \\, \#  # with comment
 Not escaped: \@
 Variable: ${example}
 
+# builtin commands
+\addpath{}
+\usepkg{}
+
 @{begin}
 
+# basic tests
 Command: \foo 
+Builtin: \insert
 With prefix: \foo:bar
 With options: \foo( a, b=-2, c=0xFFA, d=.5e-3, e=False, f='hello', g="World ${name}" )
 With options and body: \foo(a)[ escape: \], no escape: \\ \#, no command: \bar ]
 With curly body: \foo{ with escapes: \# \} }
 With nested command: \foo{ text \bar text }
 
+# multiline tests
 Multiline command: \foo(
     a=5, b='hello'
 ){
@@ -37,5 +43,17 @@ Multiline command with angle body: \foo(
     No escape: \\, \#
     Not the end: ]
 ]>
+
+# known issues 
+1. Text without space followed by parens is colored as option group:
+    a( foo=5 )
+
+2. Text without space, or closing parens, followed by block opener ({,[,<[) is colored as body:
+    a{ body }
+    )[ as well ]
+
+In both cases, use ~ to separate the two (MeLan replaces ~ with empty strings):
+    a~{ body }
+    )~[ as well ]
 
 @end
