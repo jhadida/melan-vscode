@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-[ $# -lt 3 ] && { echo "Usage: $0 <Version> -m <Message>" }
+[ $# -lt 3 ] && { echo "Usage: $0 <Version> -m <Message>"; exit 1; }
 
 Version=$1
 shift
