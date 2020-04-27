@@ -3,7 +3,7 @@
 
 This is a language extension package for VSCode to support the syntax of [MeLan](https://github.com/jhadida/melan), the meta-language with Python backend.
 
-<img src="assets/demo.gif" alt="Syntax highlighting in action">
+![Syntax highlighting in action](assets/demo.gif)
 
 ## Known Issues
 
