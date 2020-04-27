@@ -2,7 +2,7 @@
     "name": "melan",
     "displayName": "MeLan",
     "description": "Language extension for MeLan: the meta-language with Python backend.",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "publisher": "jhadida",
     "license": "MIT",
     "homepage": "https://github.com/jhadida/melan-vscode",
@@ -23,19 +23,28 @@
         "text-processor"
     ],
     "contributes": {
-        "languages": [{
-            "id": "melan",
-            "aliases": ["MeLan", "melan"],
-            "extensions": [".mel"],
-            "configuration": "./syntax/configuration.json"
-        }],
-        "grammars": [{
-            "language": "melan",
-            "scopeName": "text.mel",
-            "path": "./syntax/melan.tmLanguage.json",
-            "embeddedLanguages": {
-                "source.json": "json"
+        "languages": [
+            {
+                "id": "melan",
+                "aliases": [
+                    "MeLan",
+                    "melan"
+                ],
+                "extensions": [
+                    ".mel"
+                ],
+                "configuration": "./syntax/configuration.json"
             }
-        }]
+        ],
+        "grammars": [
+            {
+                "language": "melan",
+                "scopeName": "text.mel",
+                "path": "./syntax/melan.tmLanguage.json",
+                "embeddedLanguages": {
+                    "source.json": "json"
+                }
+            }
+        ]
     }
 }
