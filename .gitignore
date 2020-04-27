@@ -1,0 +1,22 @@
+
+## OS generated files
+*._*
+.DS_Store*
+.Spotlight*
+.Trash*
+*ehthumbs.db
+*Thumbs.db
+*.fuse_hidden*
+
+## Temporary files/folders
+*.swp
+*~
+tmp*
+temp*
+
+## Application-specific
+node_modules
+__pycache__
+.ipynb_checkpoints
+.vscode
+.ipynb*

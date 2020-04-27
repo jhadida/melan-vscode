@@ -1,0 +1,41 @@
+
+# Comment
+
+Escaped: \\, \#  # with comment
+Not escaped: \@
+Variable: ${example}
+
+@{begin}
+
+Command: \foo 
+With prefix: \foo:bar
+With options: \foo( a, b=-2, c=0xFFA, d=.5e-3, e=False, f='hello', g="World ${name}" )
+With options and body: \foo(a)[ escape: \], no escape: \\ \#, no command: \bar ]
+With curly body: \foo{ with escapes: \# \} }
+With nested command: \foo{ text \bar text }
+
+Multiline command: \foo(
+    a=5, b='hello'
+){
+    # Comment
+    Nested commant: \bar
+    Escape: \\, \#
+}
+
+Multiline command with square body: \foo[
+    # No comment
+    No nested command: \bar{}
+    No escape: \\, \#
+    Not the end: \]
+]
+
+Multiline command with angle body: \foo(
+    a=5, b='hello'
+)<[
+    # No comment
+    No nested command: \bar[]
+    No escape: \\, \#
+    Not the end: ]
+]>
+
+@end

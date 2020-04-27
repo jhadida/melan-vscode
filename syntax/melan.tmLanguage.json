@@ -1,0 +1,184 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "MeLan",
+	"comment": "Using constant.other and keyword.other in places (instead of punctuation.) to target scopes commonly defined by color themes.",
+	"patterns": [
+		{ "include": "#escape.curly" },
+		{ "include": "#document" },
+		{ "include": "#comment" },
+		{ "include": "#variable" },
+		{ "include": "#command" },
+		{ "include": "#optgroup" },
+		{ "include": "#body.curly" },
+		{ "include": "#body.square" },
+		{ "include": "#body.angle" }
+	],
+	"repository": {
+		"comment": {
+			"name": "comment.line.number-sign.melan",
+			"match": "#.*"
+		},
+		"document": {
+			"name": "control.melan",
+			"match": "(@)(\\{)?(begin|end)(\\})?",
+			"captures": {
+				"1": { "name": "constant.character.document.melan" },
+				"2": { "name": "constant.other.group.begin.melan" },
+				"3": { "name": "keyword.control.document.melan" },
+				"4": { "name": "constant.other.group.end.melan" }
+			},
+			"comment": "Delineate the document area, but no implication in terms of coloring, so simply match as one-pattern rule."
+		},
+		"variable": {
+			"name": "variable.melan",
+			"match": "(\\$)(\\{)(\\w[:.\\w]*)(\\})",
+			"captures": {
+				"1": { "name": "constant.character.variable.melan" },
+				"2": { "name": "constant.other.group.begin.melan" },
+				"3": { "name": "entity.name.variable.melan" },
+				"4": { "name": "constant.other.group.end.melan" }
+			},
+			"comment": "Bash-like variables, with mandatory brackets."
+		},
+		"command": {
+			"name": "command.melan",
+			"match": "(\\\\)(\\w+:)*(\\w+)",
+			"captures": {
+				"1": { "name": "keyword.control.function.melan" },
+				"2": { "name": "entity.name.selector.melan" },
+				"3": { "name": "entity.name.function.melan" }
+			},
+			"commend": "Could also assign group 2 to entity.name.tag.melan"
+		},
+		"body.curly": {
+			"name": "command.body.melan",
+			"begin": "(?<=\\w|\\))(\\{)",
+			"end": "(\\})",
+			"beginCaptures": {
+				"1": { "name": "keyword.other.body.begin.melan" }
+			},
+			"endCaptures": {
+				"1": { "name": "keyword.other.body.end.melan" }
+			},
+			"patterns": [
+				{ "include": "#escape.curly" },
+				{ "include": "#comment" },
+				{ "include": "#variable" },
+				{ "include": "#command" },
+				{ "include": "#optgroup" },
+				{ "include": "#body.curly" },
+				{ "include": "#body.square" },
+				{ "include": "#body.angle" }
+			],
+			"comment": "TODO: add \\G to the begin pattern when VSCode supports it."
+		},
+		"body.square": {
+			"name": "command.body.melan",
+			"begin": "(?<=\\w|\\))(\\[)",
+			"end": "(\\])",
+			"beginCaptures": {
+				"1": { "name": "keyword.other.body.begin.melan" }
+			},
+			"endCaptures": {
+				"1": { "name": "keyword.other.body.end.melan" }
+			},
+			"patterns": [
+				{ "include": "#escape.square" }
+			],
+			"comment": "TODO: add \\G to the begin pattern when VSCode supports it."
+		},
+		"body.angle": {
+			"name": "command.body.melan",
+			"begin": "(?<=\\w|\\))(<\\[)",
+			"end": "(\\]>)",
+			"beginCaptures": {
+				"1": { "name": "keyword.other.body.begin.melan" }
+			},
+			"endCaptures": {
+				"1": { "name": "keyword.other.body.end.melan" }
+			},
+			"comment": "TODO: add \\G to the begin pattern when VSCode supports it."
+		},
+        "optgroup": {
+			"name": "optgroup.melan",
+			"begin": "(?<=\\w)(\\()",
+			"end": "(\\))",
+			"beginCaptures": {
+				"1": { "name": "keyword.other.optgroup.begin.melan" }
+			},
+			"endCaptures": {
+				"1": { "name": "keyword.other.optgroup.end.melan" }
+			},
+			"patterns": [
+				{ "include": "#option" }
+			],
+			"comment": "TODO: add \\G to the begin pattern when VSCode supports it."
+		},
+		"option": {
+			"name": "option.melan",
+			"begin": "(\\w+)\\s*(=)?",
+			"end": "(,)|(?=\\))",
+			"beginCaptures": {
+				"1": { "name": "variable.parameter.melan" },
+				"2": { "name": "keyword.operator.assign.melan" }
+			},
+			"endCaptures": {
+				"1": { "name": "keyword.other.optgroup.sep.melan" }
+			},
+			"patterns": [
+				{ "include": "#boolean" },
+				{ "include": "#string.sq" },
+				{ "include": "#string.dq" },
+				{ "include": "#number.hex" },
+				{ "include": "#number.float" },
+				{ "include": "#number.int" }
+			]
+		},
+		"boolean": {
+			"name": "constant.language.bool.melan",
+			"match": "([Tt]rue)|([Ff]alse)"
+		},
+		"number.int": {
+			"name": "constant.numeric.int.melan",
+			"match": "-?\\d+"
+		},
+		"number.float": {
+			"name": "constant.numeric.float.melan",
+			"match": "-?\\d*\\.\\d+([eE][-+]?\\d+)?"
+		},
+		"number.hex": {
+			"name": "constant.numeric.hex.melan",
+			"match": "0[xX][0-9a-fA-F]+"
+		},
+		"string.dq": {
+			"name": "string.quoted.double.melan",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{ "include": "#escape.any" },
+				{ "include": "#variable" }
+			]
+		},
+		"string.sq": {
+			"name": "string.quoted.single.melan",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{ "include": "#escape.any" }
+			]
+		},
+		"escape.any": {
+			"name": "constant.character.escape.melan",
+			"match": "\\\\."
+		},
+		"escape.curly": {
+			"name": "constant.character.escape",
+			"match": "\\\\[\\\\#${}]"
+		},
+		"escape.square": {
+			"name": "constant.character.escape",
+			"match": "\\\\[\\[\\]]"
+		}
+	},
+	"scopeName": "source.mel"
+}
