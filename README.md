@@ -3,10 +3,6 @@
 
 This is a language extension package for VSCode to support the syntax of [MeLan](https://github.com/jhadida/melan), the meta-language with Python backend.
 
-## Features
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
 <a href="/assets/demo.gif" target="_blank">
     <img src="/assets/demo.gif" alt="Syntax highlighting in action" style="max-width:100%;" >
 </a>
@@ -34,3 +30,11 @@ The solution for both issues is to use the tilde character `~`, which Melan repl
     a~{ not a body }
     )~[ not a body ]
 ```
+
+## Release Notes
+
+### [0.1.0] – 27-Apr-2020
+
+- Initial release
+- Support commonly expected syntaxes
+- Support embedded JSON with the `define` command
