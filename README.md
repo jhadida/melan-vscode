@@ -7,8 +7,8 @@ This is a language extension package for VSCode to support the syntax of [MeLan]
 
 Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
-<a href="/jhadida/melan-vscode/blob/master/assets/demo.gif" target="_blank">
-    <img src="/jhadida/melan-vscode/raw/master/assets/demo.gif" alt="Syntax highlighting in action" style="max-width:100%;" >
+<a href="/assets/demo.gif" target="_blank">
+    <img src="/assets/demo.gif" alt="Syntax highlighting in action" style="max-width:100%;" >
 </a>
 
 ## Known Issues
