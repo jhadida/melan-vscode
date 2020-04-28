@@ -4,7 +4,7 @@
 	"scopeName": "text.mel",
 	"comment": "Using constant.other and keyword.other in places (instead of punctuation.) to target scopes commonly styled by color themes.",
 	"patterns": [
-		{ "include": "#escape.curly" },
+		{ "include": "#escape.doc" },
 		{ "include": "#document" },
 		{ "include": "#comment" },
 		{ "include": "#variable" },
@@ -14,6 +14,7 @@
 		{ "include": "#optgroup" },
 		{ "include": "#body.curly" },
 		{ "include": "#body.square" },
+		{ "include": "#body.angle.inline" },
 		{ "include": "#body.angle" }
 	],
 	"repository": {
@@ -99,6 +100,7 @@
 				{ "include": "#optgroup" },
 				{ "include": "#body.curly" },
 				{ "include": "#body.square" },
+				{ "include": "#body.angle.inline" },
 				{ "include": "#body.angle" }
 			],
 			"comment": "TODO: add \\G to the begin expression when VSCode supports it."
@@ -121,7 +123,7 @@
 		"body.angle": {
 			"name": "command.body.melan",
 			"begin": "(?<=\\w|\\))(<\\[)",
-			"end": "(\\]>)",
+			"end": "(\\]>)$",
 			"beginCaptures": {
 				"1": { "name": "keyword.other.body.begin.melan" }
 			},
@@ -129,6 +131,15 @@
 				"1": { "name": "keyword.other.body.end.melan" }
 			},
 			"comment": "TODO: add \\G to the begin expression when VSCode supports it."
+		},
+		"body.angle.inline": {
+			"name": "command.body.melan",
+			"match": "(?<=\\w|\\))(<\\[).*?(\\]>)",
+			"captures": {
+				"1": { "name": "keyword.other.body.begin.melan" },
+				"2": { "name": "keyword.other.body.end.melan" }
+			},
+			"comment": "TODO: add \\G to the match expression when VSCode supports it."
 		},
         "optgroup": {
 			"name": "optgroup.melan",
@@ -202,9 +213,13 @@
 			"name": "constant.character.escape.melan",
 			"match": "\\\\."
 		},
+		"escape.doc": {
+			"name": "constant.character.escape",
+			"match": "\\\\[\\\\$#~]"
+		},
 		"escape.curly": {
 			"name": "constant.character.escape",
-			"match": "\\\\[\\\\#${}]"
+			"match": "\\\\[\\\\$#{}~]"
 		},
 		"escape.square": {
 			"name": "constant.character.escape",

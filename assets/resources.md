@@ -1,6 +1,6 @@
 
 - Official documentation for VSCode extension [link](https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide)
-- TextMate documentation [link](https://macromates.com/manual/en/regular_expressions)
+- TextMate documentation: [regex](https://macromates.com/manual/en/regular_expressions), [grammars](https://macromates.com/manual/en/language_grammars)
 - Great blog post about writing a TextMate grammar [link](https://www.apeth.com/nonblog/stories/textmatebundle.html)
 - WebApp to test Oniguruma regex [link](https://rubular.com/), see also files `RE-<version>.txt` in this folder
 - SublimeText docs about scope naming [link](https://www.sublimetext.com/docs/3/scope_naming.html), see also `standard-scopes.txt` in this folder

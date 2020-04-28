@@ -1,4 +1,7 @@
 
+<a href="https://marketplace.visualstudio.com/items?itemName=jhadida.melan"><img src="https://img.shields.io/badge/VSCode%20Marketplace-melan-blue" alt="Language extension for VSCode" style="margin:0 20px;"></a>
+<img src="https://img.shields.io/visual-studio-marketplace/i/jhadida.melan?color=green&style=plastic" alt="Unique installs on VSCode Marketplace" style="margin:0 20px;">
+
 # MeLan language extension for VSCode
 
 This is a language extension package for VSCode to support the syntax of [MeLan](https://github.com/jhadida/melan), the meta-language with Python backend.
@@ -10,24 +13,34 @@ This is a language extension package for VSCode to support the syntax of [MeLan]
 TextMate grammars are not well suited to describing contiguous sequences of scopes spanning multiple lines, each with their own rules (e.g. `Command > Options > Body`).
 For this reason, the matching of commands, option groups, and body contents, are currently implemented with separate rules. 
 
-Hence the following minor issues:
+Hence the following issues:
 
-- Parentheses directly following a word character (letter, digit or underscore) may be wrongly interpreted as an option group:
+1. Parentheses directly following a word character (letter, digit or underscore) may be wrongly interpreted as an option group:
 ```
     a( foo=5 )          # wrongly colored as option group
 ```
-- Body delimiters (`{} [] <[]>`) directly following a word charater, or a closing parenthesis, may be wrongly colored as well:
+2. Body delimiters (`{} [] <[]>`) directly following a word charater, or a closing parenthesis, may be wrongly colored as well:
 ```
     a{ not a body }     # wrongly colored as body
     )[ not a body ]     # wrongly colored as body
 ```
 
-The solution for both issues is to use the tilde character `~`, which Melan replaces with an empty string during compilation:
+The solution for these issues is to use the tilde character `~`, which Melan replaces with an empty string during compilation:
 ```
     a~( foo=5 )
     a~{ not a body }
     )~[ not a body ]
 ```
+
+## Tips
+
+Angular body delimiters `<[ ]>` are intended to contain pre-formatted text (e.g. code samples) with all sorts of crazy syntax.
+However, if your code samples contains `]>`, it cannot be escaped, and may therefore be wrongly interpreted as a closing delimiter.
+
+In order to solve this, we had to tweak the grammar rules for angular bodies, which leads to a couple of "_gotchas_":
+
+- Multiline angular bodies must end with `]>` **WITHOUT trailing whitespace** (i.e. `]>⎵` is **NOT** a valid closing delimiter).
+- As a result, if your code sample contains `]>`, you can effectively "escape" it simply by inserting a space after it: `]>⎵`.
 
 ## Release Notes
 

@@ -27,43 +27,19 @@
 				}
 			}
 		},
-		"define": {
-			"disabled": 1,
-			"name": "builtin.melan",
-			"begin": "(\\\\)(define)(<\\[)",
-			"end": "(\\]>)",
-			"contentName": "source.json.embedded.melan",
-			"beginCaptures": {
-				"1": { "name": "keyword.control.function.melan" },
-				"2": { "name": "support.type.builtin.melan" },
-				"3": { "name": "keyword.other.body.begin.melan" }
-			},
-			"endCaptures": {
-				"1": { "name": "keyword.other.body.end.melan" }
-			}
-		},
-		"command.square.inline": {
-			"name": "command.melan",
-			"match": "(\\\\)(\\w+:)*(\\w+)((?'bo'\\().*(?'eo'\\)))?((?'bb'\\[).*(?'eb'\\]))?",
+		"body.square.inline": {
+			"name": "command.body.melan",
+			"match": "(?<=\\w|\\))(\\[)(.*?)(\\])",
 			"captures": {
-				"1": { "name": "keyword.operator.function.melan" },
-				"2": { "name": "entity.name.tag.melan" },
-				"3": { "name": "entity.name.function.melan" },
-				"bo": { "name": "punctuation.optgroup.begin.melan" },
-				"eo": { "name": "punctuation.optgroup.end.melan" },
-				"bb": { "name": "punctuation.body.begin.melan" },
-				"eb": { "name": "punctuation.body.end.melan" },
-				"4": {
+				"1": { "name": "keyword.other.body.begin.melan" },
+				"2": {
 					"patterns": [
-						{ "include": "#option" }
+						{ "include": "#escape.square" } 
 					]
 				},
-				"5": {
-					"patterns": [
-						{"include": "#escape.square"}
-					]
-				}
-			}
+				"3": { "name": "keyword.other.body.end.melan" }
+			},
+			"comment": "TODO: add \\G to the match expression when VSCode supports it."
 		},
 		"command.angle.inline": {
 			"name": "command.melan",
