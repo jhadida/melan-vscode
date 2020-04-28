@@ -2,7 +2,7 @@
 <a href="https://marketplace.visualstudio.com/items?itemName=jhadida.melan"><img src="https://img.shields.io/badge/VSCode%20Marketplace-melan-blue" alt="Language extension for VSCode" style="margin:0 20px;"></a>
 <img src="https://img.shields.io/visual-studio-marketplace/i/jhadida.melan?color=purple&label=Installs&style=plastic" alt="Unique installs on VSCode Marketplace" style="margin:0 20px;">
 
-# MeLan language extension for VSCode
+# VSCode language extension for MeLan
 
 This is a language extension package for VSCode to support the syntax of [MeLan](https://github.com/jhadida/melan), the meta-language with Python backend.
 
