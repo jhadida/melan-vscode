@@ -11,4 +11,4 @@ echo "$Version" >| version.txt
 git commit -a "$@"
 
 vsce publish --baseImagesUrl "https://github.com/jhadida/melan-vscode/raw/master" --pat "$PAT" "$@" $Version || { echo "Failed to publish"; exit 1; }
-git push --tags
+git push origin master --tags
