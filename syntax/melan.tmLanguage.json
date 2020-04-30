@@ -12,7 +12,9 @@
 		{ "include": "#builtin" },
 		{ "include": "#command" },
 		{ "include": "#optgroup" },
+		{ "include": "#body.curly.inline" },
 		{ "include": "#body.curly" },
+		{ "include": "#body.square.inline" },
 		{ "include": "#body.square" },
 		{ "include": "#body.angle.inline" },
 		{ "include": "#body.angle" }
@@ -83,7 +85,7 @@
 		"body.curly": {
 			"name": "command.body.melan",
 			"begin": "(?<=\\w|\\))(\\{)",
-			"end": "(\\})",
+			"end": "^\\s*(\\})$",
 			"beginCaptures": {
 				"1": { "name": "keyword.other.body.begin.melan" }
 			},
@@ -98,17 +100,41 @@
 				{ "include": "#builtin" },
 				{ "include": "#command" },
 				{ "include": "#optgroup" },
+				{ "include": "#body.curly.inline" },
 				{ "include": "#body.curly" },
+				{ "include": "#body.square.inline" },
 				{ "include": "#body.square" },
 				{ "include": "#body.angle.inline" },
 				{ "include": "#body.angle" }
 			],
 			"comment": "TODO: add \\G to the begin expression when VSCode supports it."
 		},
+		"body.curly.inline": {
+			"name": "command.body.melan",
+			"match": "(?<=\\w|\\))(\\{)(.*?)(?<!\\\\)(\\})",
+			"captures": {
+				"1": { "name": "keyword.other.body.begin.melan" },
+				"2": {
+					"patterns": [
+						{ "include": "#escape.curly" },
+						{ "include": "#variable" },
+						{ "include": "#define" },
+						{ "include": "#builtin" },
+						{ "include": "#command" },
+						{ "include": "#optgroup" },
+						{ "include": "#body.curly.inline" },
+						{ "include": "#body.square.inline" },
+						{ "include": "#body.angle.inline" }
+					]
+				},
+				"3": { "name": "keyword.other.body.end.melan" }
+			},
+			"comment": "TODO: add \\G to the begin expression when VSCode supports it."
+		},
 		"body.square": {
 			"name": "command.body.melan",
 			"begin": "(?<=\\w|\\))(\\[)",
-			"end": "(\\])",
+			"end": "^\\s*(\\])$",
 			"beginCaptures": {
 				"1": { "name": "keyword.other.body.begin.melan" }
 			},
@@ -120,10 +146,22 @@
 			],
 			"comment": "TODO: add \\G to the begin expression when VSCode supports it."
 		},
+		"body.square.inline": {
+			"name": "command.body.melan",
+			"match": "(?<=\\w|\\))(\\[)(.*?)(?<!\\\\)(\\])",
+			"captures": {
+				"1": { "name": "keyword.other.body.begin.melan" },
+				"2": {
+					"patterns": [ { "include": "#escape.square" } ]
+				},
+				"3": { "name": "keyword.other.body.end.melan" }
+			},
+			"comment": "TODO: add \\G to the begin expression when VSCode supports it."
+		},
 		"body.angle": {
 			"name": "command.body.melan",
 			"begin": "(?<=\\w|\\))(<\\[)",
-			"end": "(\\]>)$",
+			"end": "^\\s*(\\]>)$",
 			"beginCaptures": {
 				"1": { "name": "keyword.other.body.begin.melan" }
 			},

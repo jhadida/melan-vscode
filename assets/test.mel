@@ -29,14 +29,14 @@ Multiline command: \foo(
 ){
     # Comment
     Nested commant: \bar
-    Escape: \\, \#
+    Escape: \\, \# 
 }
 
 Multiline command with square body: \foo[
     # No comment
     No nested command: \bar{}
     No escape: \\, \#
-    Not the end: \]
+    Not the end: \] 
 ]
 
 Multiline command with angle body: \foo(
@@ -46,7 +46,8 @@ Multiline command with angle body: \foo(
     No nested command: \bar[]
     No escape: \\, \#
     Not the end: ]
-    ]> neither ]>
+    ]> neither 
+]>
 
 # known issues 
 1. Text without space followed by parens is colored as option group:
