@@ -17,9 +17,10 @@ With prefix: \foo:bar
 With options: \foo( a, b=-2, c=0xFFA, d=.5e-3, e=False, f='hello', g="World ${name}" )
 With options and body: \foo(a)[ escape: \], no escape: \\ \#, no command: \bar ]
 With curly body: \foo{ with escapes: \# \} }
-With nested command: \foo{ text \bar text }
+With nested command: \foo{\bar{}}
 
 # inline tests
+Two commands: \foo{} \bar{}
 One command: \foo[Hello\] \bar[World]
 Two commands: \foo<[Hello]> \bar<[World]>
 
