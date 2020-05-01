@@ -47,7 +47,7 @@ Multiline command with angle body: \foo(
     No nested command: \bar[]
     No escape: \\, \#
     Not the end: ]
-    ]> neither 
+    \]> neither
 ]>
 
 # known issues 
