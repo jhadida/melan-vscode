@@ -2,7 +2,7 @@
     "name": "melan",
     "displayName": "MeLan",
     "description": "Language extension for MeLan: the meta-language with Python backend.",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "publisher": "jhadida",
     "license": "MIT",
     "homepage": "https://github.com/jhadida/melan-vscode",
