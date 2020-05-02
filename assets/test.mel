@@ -1,21 +1,21 @@
 
-# outside document
-Escaped: \\, \#  # with comment
-Not escaped: \@
-Variable: ${example}
-
 # builtin commands
 \addpath{}
 \usepkg{}
 
 @{begin}
 
+# outside document
+Escaped: \\, \#  # with comment
+Not escaped: \@
+Variable: ${example}
+
 # basic tests
 Command: \foo 
 Builtin: \insert
 With prefix: \foo:bar
 With options: \foo( a, b=-2, c=0xFFA, d=.5e-3, e=False, f='hello', g="World ${name}" )
-With options and body: \foo(a)[ escape: \], no escape: \\ \#, no command: \bar ]
+With options and body: \foo(a)[ escape: \] \\, no escape: \#, no command: \bar ]
 With curly body: \foo{ with escapes: \# \} }
 With nested command: \foo{\bar{}}
 
@@ -31,7 +31,7 @@ Multiline command: \foo(
     # Comment
     Nested commant: \bar
     Escape: \\, \# 
-}
+        }
 
 Multiline command with square body: \foo[
     # No comment
@@ -45,10 +45,10 @@ Multiline command with angle body: \foo(
 )<[
     # No comment
     No nested command: \bar[]
-    No escape: \\, \#
+    Escape: \\
+    No escape: \]
     Not the end: ]
-    \]> neither
-]>
+    \]> neither ]>
 
 # known issues 
 1. Text without space followed by parens is colored as option group:
